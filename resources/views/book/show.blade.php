@@ -15,6 +15,9 @@
                 <h3>Trama:</h3>
                 <p>{{$book->plot}}</p>
                 <h4>Autore: {{$book->author}}</h4>
+                @if($book->editor_id)
+                    <h5>Editore: {{$book->editor->name}}</h5>
+                @endif
                 <span class="text-muted">Inserito il {{$book->created_at->format('l, d/m/Y H:m')}}</span>
                 <div class="mt-5 d-flex justify-content-around">
                     <a href="{{route('book.edit', $book)}}" class="btn btn-warning">Modifica</a>

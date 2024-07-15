@@ -8,6 +8,6 @@
 
 # Relazione One-to-Many Book-User X
 
-# Relazione One-to-Many Book-Editor
+# Relazione One-to-Many Book-Editor X
 
-# Relazione Many-to-Many Book-Category
+# Relazione Many-to-Many Book-Category X
