@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
+use App\Http\Requests\UpdateBookRequest;
 
 class BookController extends Controller
 {
@@ -34,5 +35,28 @@ class BookController extends Controller
     public function index(){
         $books = Book::all();
         return view('book.index', compact('books'));
+    }
+
+    public function show(Book $book){
+        return view('book.show', compact('book'));
+    }
+
+    public function edit(Book $book){
+        return view('book.edit', compact('book'));
+    }
+
+    public function update(Book $book, UpdateBookRequest $request){
+        $book->update([
+            'title' => $request->title,
+            'author' => $request->author,
+            'plot' => $request->plot,
+            'cover' => $request->file('cover') ? $request->file('cover')->store('public/covers') : $book->cover
+        ]);
+        return redirect(route('home'))->with('success', 'Libro modificato con successo');
+    }
+
+    public function destroy(Book $book){
+        $book->delete();
+        return redirect(route('home'))->with('success', 'Libro cancellato con successo');
     }
 }
