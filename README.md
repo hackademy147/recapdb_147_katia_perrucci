@@ -4,9 +4,9 @@
     - Update X
     - Destroy X
 
-# Installazione Fortify
+# Installazione Fortify X
 
-# Relazione One-to-Many Book-User
+# Relazione One-to-Many Book-User X
 
 # Relazione One-to-Many Book-Editor
 

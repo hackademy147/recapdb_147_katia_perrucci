@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
@@ -13,3 +14,5 @@ Route::get('/book/show/{book}', [BookController::class, 'show'])->name('book.sho
 Route::get('/book/edit/{book}', [BookController::class, 'edit'])->name('book.edit');
 Route::put('/book/update/{book}', [BookController::class, 'update'])->name('book.update');
 Route::delete('/book/destroy/{book}', [BookController::class, 'destroy'])->name('book.destroy');
+
+Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');

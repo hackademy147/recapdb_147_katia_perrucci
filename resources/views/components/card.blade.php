@@ -9,6 +9,7 @@
                     <h5 class="card-title">{{$book->title}}</h5>
                     <p class="card-text">Autore: {{$book->author}}</p>
                     <p class="card-text"><small class="text-body-secondary">Data inserimento: {{$book->created_at->format('d/m/Y')}}</small></p>
+                    <p class="card-text"><small class="text-body-secondary">Inserito da: {{$book->user->name ?? 'Nessun utente'}}</small></p>
                 </div>
             </div>
         </div>

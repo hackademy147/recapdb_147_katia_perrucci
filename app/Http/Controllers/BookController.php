@@ -6,9 +6,19 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Auth;
 
-class BookController extends Controller
+class BookController extends Controller implements HasMiddleware
 {
+    public static function middleware()
+    {
+        return [
+            new Middleware('auth', only: ['create', 'edit'])
+        ];    
+    }
+
     public function create(){
         return view('book.create');
     }
@@ -28,6 +38,7 @@ class BookController extends Controller
 
             //! recupero dalla request il file con name cover, lo salvo con il metodo storeAs() nella cartella public e nella sotto-cartella covers con nome il nome del file originale che viene caricato tramite il metodo getClientOriginalName()
             'cover' => $request->file('cover')->storeAs('public/covers',  $request->file('cover')->getClientOriginalName()),
+            'user_id' => Auth::id()
         ]);
         return redirect(route('home'))->with('success', 'Libro inserito con successo');
     }
